@@ -44,7 +44,7 @@ Add these lines to your 'init.el':
 
 #### Screenshots
 
-![alt text](./screenshots/darcula1.png)
+![alt text](./darcula1.png)
 
 Copyright© 2020 Ian Y.E. Pan
 
