@@ -38,7 +38,6 @@ Add these lines to your 'init.el':
 (use-package jetbrains-darcula-theme
   :straight (:host github :repo "ianpan870102/jetbrains-darcula-emacs-theme")
   :custom
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/straight/repos/jetbrains-darcula-emacs-theme/")
   (load-theme 'jetbrains-darcula t))
 ```
 
