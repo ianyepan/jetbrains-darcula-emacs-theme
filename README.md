@@ -41,6 +41,39 @@ Add these lines to your 'init.el':
   (load-theme 'jetbrains-darcula t))
 ```
 
+#### User-customization
+
+You need `after-load-theme-hook`, if you don't already have it, define one like this:
+
+```
+(defvar after-load-theme-hook nil
+  "Hook run after a color theme is loaded using `load-theme'.")
+
+(defun run-after-load-theme-hook (&rest _)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+
+(advice-add #'load-theme :after #'run-after-load-theme-hook)
+```
+
+Then in your `use-package` declaration:
+
+```
+(use-package jetbrains-darcula-theme
+  :straight (:host github :repo "ianpan870102/jetbrains-darcula-emacs-theme")
+  :config
+  (defun customize-jetbrains-darcula ()
+    "Customize jetbrains darcula theme"
+    (if (member 'jetbrains-darcula custom-enabled-themes)
+        (jetbrains-darcula-with-color-variables
+         (custom-theme-set-faces
+          'jetbrains-darcula
+          `(default ((t (:foreground ,fg1 :background ,bg0))))
+          ))))
+  (add-hook 'after-load-theme-hook 'customize-jetbrains-darcula)
+  (load-theme 'jetbrains-darcula t))
+```
+
 #### Screenshots
 
 ![alt text](./darcula1.png)
