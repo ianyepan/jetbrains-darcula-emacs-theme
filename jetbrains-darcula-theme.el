@@ -1,8 +1,10 @@
-;;; jetbrains-darcula-theme.el --- A complete port of the default JetBrains Darcula theme for Emacs
+;;; jetbrains-darcula-theme.el --- A complete port of the default JetBrains Darcula theme
 
 ;; Copyright (C) 2020 , Ian Y.E. Pan
 
 ;; Author: Ian Y.E. Pan
+;; URL: https://github.com/ianpan870102/jetbrains-darcula-emacs-theme
+;; Version: 1.0.0
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,13 +22,14 @@
 ;; This file is not part of Emacs.
 
 ;;; Commentary:
+;; A complete port of the default JetBrains Darcula theme for Emacs
 
 ;;; Code:
 
 (deftheme jetbrains-darcula)
 
 ;;;###autoload
-(defcustom jetbrains-darcula-override-colors-alist '()
+(defcustom jetbrains-darcula-theme-override-colors-alist '()
   "Place to override default theme colors.
 
 You can override a subset of the theme's default colors by
@@ -38,7 +41,7 @@ defining them in this alist."
 
 ;;; Color Palette
 
-(defvar jetbrains-darcula-default-colors-alist
+(defvar jetbrains-darcula-theme-default-colors-alist
   '(("fg0"               . "#8997a6")
     ("fg1"               . "#a9b7c6") ; default fg
     ("fg2"               . "#cccccc")
@@ -51,9 +54,9 @@ defining them in this alist."
     ("bg3"               . "#313335") ; hl-line
     ("bg4"               . "#383c3f")
     ("bg-hl"             . "#214283")
-    ("jb-r"              . "#8c0909")
-    ("jb-g"              . "#365546")
-    ("jb-b"              . "#214283")
+    ("jb-r"              . "#ac0909")
+    ("jb-g"              . "#36a546")
+    ("jb-y"              . "#f1eb7f")
     ("key2"              . "#c57825")
     ("key3"              . "#d0d0ff")
     ("accent"            . "#ffffff")
@@ -80,27 +83,26 @@ defining them in this alist."
     ("jb-red"        . "#8c0909")
     ("jb-blue"       . "#7ca8c6")
     ("jb-lightgreen" . "#aeae80")
-    ("jb-green"      . "#5e8759")
-    ))
+    ("jb-green"      . "#5e8759")))
 
-(defmacro jetbrains-darcula-with-color-variables (&rest body)
+(defmacro jetbrains-darcula-theme-with-color-variables (&rest body)
   "`let' bind all colors around BODY.
 Also bind `class' to ((class color) (min-colors 89))."
   (declare (indent 0))
   `(let ((class '((class color) (min-colors 89)))
          ,@(mapcar (lambda (cons)
                      (list (intern (car cons)) (cdr cons)))
-                   (append jetbrains-darcula-default-colors-alist
-                           jetbrains-darcula-override-colors-alist)))
+                   (append jetbrains-darcula-theme-default-colors-alist
+                           jetbrains-darcula-theme-override-colors-alist)))
      ,@body))
 
-(jetbrains-darcula-with-color-variables
+(jetbrains-darcula-theme-with-color-variables
   (custom-theme-set-faces
    'jetbrains-darcula
    `(default                                  ((,class (:background ,bg1 :foreground ,fg1))))
 
    `(font-lock-builtin-face                   ((,class (:foreground ,builtin))))
-   `(font-lock-comment-face                   ((,class (:foreground ,comment))))
+   `(font-lock-comment-face                   ((,class (:foreground ,comment :italic t))))
    `(font-lock-negation-char-face             ((,class (:foreground ,const))))
    `(font-lock-reference-face                 ((,class (:foreground ,const))))
    `(font-lock-constant-face                  ((,class (:foreground ,const))))
@@ -110,21 +112,21 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(font-lock-string-face                    ((,class (:foreground ,str))))
    `(font-lock-type-face                      ((,class (:foreground ,type ))))
    `(font-lock-variable-name-face             ((,class (:foreground ,var))))
-   `(font-lock-warning-face                   ((,class (:foreground ,warning :background ,bg2))))
+   `(font-lock-warning-face                   ((,class (:foreground ,jb-red :background ,bg2))))
 
-   `(region                                   ((,class (:background ,bg-hl))))
+   `(region                                   ((,class (:background ,bg-hl :extend nil))))
    `(highlight                                ((,class (:foreground ,bg3 :background ,fg3))))
    `(hl-line                                  ((,class (:background ,bg3))))
    `(fringe                                   ((,class (:background ,bg1 :foreground ,fg4))))
-   `(cursor                                   ((,class (:background ,fg1))))
+   `(cursor                                   ((,class (:background "white"))))
    `(show-paren-match-face                    ((,class (:background ,warning))))
-   `(show-paren-match                         ((t (:foreground ,accent :background ,bg4 :bold nil))))
+   `(show-paren-match                         ((t (:foreground "yellow" :background ,bg4 :bold t))))
    `(show-paren-mismatch                      ((t (:background ,warning))))
    `(isearch                                  ((t (:foreground ,accent :background ,jb-green))))
    `(isearch-fail                             ((t (:foreground ,accent :background ,jb-red))))
-   `(lazy-highlight                           ((t (:foreground ,accent :background ,jb-b))))
+   `(lazy-highlight                           ((t (:foreground ,accent :background ,jb-y))))
    `(vertical-border                          ((,class (:foreground ,bg3))))
-   `(minibuffer-prompt                        ((,class (:foreground ,jb-blue :weight normal))))
+   `(minibuffer-prompt                        ((,class (:foreground ,fg2 :weight normal))))
    `(default-italic                           ((,class (:italic t))))
    `(link                                     ((,class (:foreground ,jb-blue :underline t))))
    `(error                                    ((,class (:foreground ,jb-orange))))
@@ -246,22 +248,6 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(rainbow-delimiters-depth-9-face          ((,class :foreground "LightSkyBlue")))
    `(rainbow-delimiters-unmatched-face        ((,class :foreground ,warning)))
 
-   ;;;;; Old magit faces
-   ;; `(magit-item-highlight                     ((,class :background ,bg3)))
-   ;; `(magit-section-heading                    ((,class (:foreground ,keyword :weight normal))))
-   ;; `(magit-hunk-heading                       ((,class (:background ,bg3))))
-   ;; `(magit-section-highlight                  ((,class (:background ,bg3))))
-   ;; `(magit-hunk-heading-highlight             ((,class (:background ,bg3))))
-   ;; `(magit-diff-context-highlight             ((,class (:background ,bg3 :foreground ,fg3))))
-   ;; `(magit-diffstat-added                     ((,class (:foreground ,type))))
-   ;; `(magit-diffstat-removed                   ((,class (:foreground ,var))))
-   ;; `(magit-process-ok                         ((,class (:foreground ,func :weight normal))))
-   ;; `(magit-process-ng                         ((,class (:foreground ,warning :weight normal))))
-   ;; `(magit-branch                             ((,class (:foreground ,const :weight normal))))
-   ;; `(magit-log-author                         ((,class (:foreground ,fg3))))
-   ;; `(magit-hash                               ((,class (:foreground ,fg2))))
-   ;; `(magit-diff-file-header                   ((,class (:foreground ,fg2 :background ,bg3))))
-
    ;;;;; New magit faces (adpated from sanityinc-tomorrow themes)
    `(magit-item-highlight                     ((,class :background ,bg3)))
    `(magit-hunk-heading                       ((,class (:background ,bg3))))
@@ -277,20 +263,6 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(magit-branch-remote                      ((t (:foreground ,jb-green))))
    `(magit-cherry-equivalent                  ((t (:foreground ,jb-magenta))))
    `(magit-cherry-unmatched                   ((t (:foreground ,jb-bluegreen))))
-   ;; `(magit-diff-added                         ((t (:foreground ,jb-green :extend t))))
-   ;; `(magit-diff-added-highlight               ((t (:foreground ,jb-green :background ,bg3 :extend t))))
-   ;; `(magit-diff-base                          ((t (:foreground ,bg1 :background ,jb-orange :extend t))))
-   ;; `(magit-diff-base-highlight                ((t (:foreground ,jb-orange :background ,bg3 :extend t))))
-   ;; `(magit-diff-context                       ((t (:foreground ,comment :extend t))))
-   ;; `(magit-diff-file-header                   ((,class (:foreground ,fg2 :background ,bg3))))
-   ;; `(magit-diff-file-heading                  ((t (:foreground ,fg1 :extend t))))
-   ;; `(magit-diff-file-heading-highlight        ((t (:background ,bg3 :extend t))))
-   ;; `(magit-diff-file-heading-selection        ((t (:foreground ,jb-orange :background ,bg3 :extend t))))
-   ;; `(magit-diff-hunk-heading                  ((t (:foreground ,fg1 :background ,bg3 :extend t))))
-   ;; `(magit-diff-hunk-heading-highlight        ((t (:background ,bg3 :extend t))))
-   ;; `(magit-diff-lines-heading                 ((t (:foreground ,jb-yellow :background ,jb-red :extend t))))
-   ;; `(magit-diff-removed                       ((t (:foreground ,jb-orange :extend t))))
-   ;; `(magit-diff-removed-highlight             ((t (:foreground ,jb-orange :background ,bg3 :extend t))))
    `(magit-diff-context-highlight             ((,class (:background ,bg3 :foreground ,fg3))))
    `(magit-diffstat-added                     ((t (:foreground ,jb-green))))
    `(magit-diffstat-removed                   ((t (:foreground ,jb-orange))))
@@ -445,14 +417,14 @@ Also bind `class' to ((class color) (min-colors 89))."
 
    `(git-gutter:added                         ((t (:background ,jb-g :foreground ,jb-g :weight normal))))
    `(git-gutter:deleted                       ((t (:background ,jb-r :foreground ,jb-r :weight normal))))
-   `(git-gutter:modified                      ((t (:background ,jb-b :foreground ,jb-b :weight normal))))
+   `(git-gutter:modified                      ((t (:background ,jb-y :foreground ,jb-y :weight normal))))
    `(git-gutter-fr:added                      ((t (:background ,jb-g :foreground ,jb-g :weight normal))))
    `(git-gutter-fr:deleted                    ((t (:background ,jb-r :foreground ,jb-r :weight normal))))
-   `(git-gutter-fr:modified                   ((t (:background ,jb-b :foreground ,jb-b :weight normal))))
+   `(git-gutter-fr:modified                   ((t (:background ,jb-y :foreground ,jb-y :weight normal))))
 
    `(diff-hl-insert                           ((t (:background ,jb-g :foreground ,jb-g))))
    `(diff-hl-delete                           ((t (:background ,jb-r :foreground ,jb-r))))
-   `(diff-hl-change                           ((t (:background ,jb-b :foreground ,jb-b))))
+   `(diff-hl-change                           ((t (:background ,jb-y :foreground ,jb-y))))
 
    `(neo-dir-link-face                        ((t (:foreground "#cccccc" :family "Sans Serif"))))
    `(neo-header-face                          ((t (:foreground "#cccccc" :family "Sans Serif"))))
@@ -466,6 +438,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(sml/prefix                               ((t (:foreground ,fg1 :weight normal))))
    `(sml/read-only                            ((t (:foreground ,fg1 :weight normal))))
    `(sml/modes                                ((t (:foreground ,fg1 :weight normal))))
+   `(sml/modified                             ((t (:foreground ,fg3 :weight normal))))
 
    `(evil-ex-substitute-matches               ((t (:foreground ,warning :weight normal :strike-through t))))
    `(evil-ex-substitute-replacement           ((t (:foreground ,jb-bluegreen :weight normal))))
@@ -473,10 +446,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(hl-todo                                  ((t (:inverse-video t))))
    `(highlight-numbers-number                 ((t (:foreground ,jb-blue))))
    `(highlight-operators-face                 ((t (:inherit default))))
-   `(highlight-symbol-face                    ((t (:background "#343a40"))))
-   ))
-
-;;; Footer
+   `(highlight-symbol-face                    ((t (:background "#354a32"))))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)
@@ -484,5 +454,6 @@ Also bind `class' to ((class color) (min-colors 89))."
                (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide-theme 'jetbrains-darcula)
+(provide 'jetbrains-darcula-theme)
 
 ;;; jetbrains-darcula-theme.el ends here
