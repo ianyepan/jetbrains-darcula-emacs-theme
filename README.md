@@ -16,6 +16,9 @@
 <p align="center">A complete port of the default JetBrains Darcula theme for Emacs</p>
 
 <br/>
+
+![alt text](./darcula1.png)
+
 <br/>
 
 #### Installation: manual install
@@ -74,9 +77,6 @@ Then in your `use-package` declaration:
   (load-theme 'jetbrains-darcula t))
 ```
 
-#### Screenshots
-
-![alt text](./darcula1.png)
 
 Copyright© 2020 Ian Y.E. Pan
 
