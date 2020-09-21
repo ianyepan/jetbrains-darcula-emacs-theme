@@ -1,4 +1,4 @@
-;;; jetbrains-darcula-theme.el --- A complete port of the default JetBrains Darcula theme
+;;; jetbrains-darcula-theme.el --- A complete port of the default JetBrains Darcula theme -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020 , Ian Y.E. Pan
 
@@ -47,7 +47,6 @@ defining them in this alist."
     ("fg2"               . "#cccccc")
     ("fg3"               . "#e8e8e8")
     ("fg4"               . "#fafafa")
-    ("bg00"              . "#000000")
     ("bg0"               . "#111111")
     ("bg1"               . "#2b2b2b") ; default bg
     ("bg2"               . "#303030")
@@ -78,11 +77,9 @@ defining them in this alist."
     ("jb-yellow"     . "#ffc66d")
     ("jb-bluegreen"  . "#318495")
     ("jb-magenta"    . "#9676ac")
-    ("jb-lightblue"  . "#d0d0ff")
     ("jb-orange"     . "#c57825")
     ("jb-red"        . "#8c0909")
     ("jb-blue"       . "#7ca8c6")
-    ("jb-lightgreen" . "#aeae80")
     ("jb-green"      . "#5e8759")))
 
 (defmacro jetbrains-darcula-theme-with-color-variables (&rest body)
