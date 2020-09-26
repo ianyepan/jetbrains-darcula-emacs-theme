@@ -112,6 +112,7 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(font-lock-warning-face                   ((,class (:foreground ,jb-red :background ,bg2))))
 
    `(region                                   ((,class (:background ,bg-hl :extend nil))))
+   `(secondary-selection                      ((,class (:inherit region))))
    `(highlight                                ((,class (:foreground ,bg3 :background ,fg3))))
    `(hl-line                                  ((,class (:background ,bg3))))
    `(fringe                                   ((,class (:background ,bg1 :foreground ,fg4))))
