@@ -27,73 +27,48 @@
 ;;; Code:
 
 (deftheme jetbrains-darcula)
+(let ((class '((class color) (min-colors 89)))
+      (fg0                "#8997a6")
+      (fg1                "#a9b7c6") ; default fg
+      (fg2                "#cccccc")
+      (fg3                "#e8e8e8")
+      (fg4                "#fafafa")
+      (bg0                "#111111")
+      (bg1                "#2b2b2b") ; default bg
+      (bg2                "#303030")
+      (bg3                "#313335") ; hl-line
+      (bg4                "#383c3f")
+      (bg-hl              "#214283")
+      (jb-r               "#ac0909")
+      (jb-g               "#36a546")
+      (jb-y               "#f1eb7f")
+      (key2               "#c57825")
+      (key3               "#d0d0ff")
+      (accent             "#ffffff")
+      (mode-line-bg       "#3c3f41")
+      (mode-line-bg-dark  "#2c2f31")
+      (line-num           "#606366")
+      (builtin            "#c57825")
+      (keyword            "#c57825")
+      (const              "#9676ac")
+      (comment            "#8e9292")
+      (doc                "#5e8759")
+      (func               "#ffc66d")
+      (str                "#5e8759")
+      (type               "#c57825")
+      (var                "#9676ac")
+      (warning            "#990000")
 
-;;;###autoload
-(defcustom jetbrains-darcula-theme-override-colors-alist '()
-  "Place to override default theme colors.
+      ;; standardized palette
+      (jb-yellow      "#ffc66d")
+      (jb-bluegreen   "#318495")
+      (jb-magenta     "#9676ac")
+      (jb-orange      "#c57825")
+      (jb-red         "#8c0909")
+      (jb-blue        "#7ca8c6")
+      (jb-green       "#5e8759"))
 
-You can override a subset of the theme's default colors by
-defining them in this alist."
-  :group 'jetbrains-darcula-theme
-  :type '(alist
-          :key-type (string :tag "Name")
-          :value-type (string :tag " Hex")))
 
-;;; Color Palette
-
-(defvar jetbrains-darcula-theme-default-colors-alist
-  '(("fg0"               . "#8997a6")
-    ("fg1"               . "#a9b7c6") ; default fg
-    ("fg2"               . "#cccccc")
-    ("fg3"               . "#e8e8e8")
-    ("fg4"               . "#fafafa")
-    ("bg0"               . "#111111")
-    ("bg1"               . "#2b2b2b") ; default bg
-    ("bg2"               . "#303030")
-    ("bg3"               . "#313335") ; hl-line
-    ("bg4"               . "#383c3f")
-    ("bg-hl"             . "#214283")
-    ("jb-r"              . "#ac0909")
-    ("jb-g"              . "#36a546")
-    ("jb-y"              . "#f1eb7f")
-    ("key2"              . "#c57825")
-    ("key3"              . "#d0d0ff")
-    ("accent"            . "#ffffff")
-    ("mode-line-bg"      . "#3c3f41")
-    ("mode-line-bg-dark" . "#2c2f31")
-    ("line-num"          . "#606366")
-    ("builtin"           . "#c57825")
-    ("keyword"           . "#c57825")
-    ("const"             . "#9676ac")
-    ("comment"           . "#8e9292")
-    ("doc"               . "#5e8759")
-    ("func"              . "#ffc66d")
-    ("str"               . "#5e8759")
-    ("type"              . "#c57825")
-    ("var"               . "#9676ac")
-    ("warning"           . "#990000")
-
-    ;; standardized palette
-    ("jb-yellow"     . "#ffc66d")
-    ("jb-bluegreen"  . "#318495")
-    ("jb-magenta"    . "#9676ac")
-    ("jb-orange"     . "#c57825")
-    ("jb-red"        . "#8c0909")
-    ("jb-blue"       . "#7ca8c6")
-    ("jb-green"      . "#5e8759")))
-
-(defmacro jetbrains-darcula-theme-with-color-variables (&rest body)
-  "`let' bind all colors around BODY.
-Also bind `class' to ((class color) (min-colors 89))."
-  (declare (indent 0))
-  `(let ((class '((class color) (min-colors 89)))
-         ,@(mapcar (lambda (cons)
-                     (list (intern (car cons)) (cdr cons)))
-                   (append jetbrains-darcula-theme-default-colors-alist
-                           jetbrains-darcula-theme-override-colors-alist)))
-     ,@body))
-
-(jetbrains-darcula-theme-with-color-variables
   (custom-theme-set-faces
    'jetbrains-darcula
    `(default                                  ((,class (:background ,bg1 :foreground ,fg1))))
