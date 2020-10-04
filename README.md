@@ -21,23 +21,33 @@
 
 <br/>
 
+#### Installation: use-package
+
+```emacs-lisp
+(use-package jetbrains-darcula-theme
+  :config
+  (load-theme 'jetbrains-darcula t))
+```
+
+
 #### Installation: manual install
 
 Download `jetbrains-darcula-theme.el` and put it under `~/.emacs.d/themes/` (or `~/.config/emacs/themes/`), then add these lines to your `init.el`:
 
-```
+```emacs-lisp
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-# or
+; or
 (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 
 (load-theme 'jetbrains-darcula t)
 ```
 
-#### Installation: Use-Package & Straight
+#### Installation: straight
 
-Requires [Use-Package](https://github.com/jwiegley/use-package) and [Straight.el](https://github.com/raxod502/straight.el)
+Requires [use-package](https://github.com/jwiegley/use-package) and [straight.el](https://github.com/raxod502/straight.el)
 Add these lines to your 'init.el':
-```
+
+```emacs-lisp
 (use-package jetbrains-darcula-theme
   :straight (:host github :repo "ianpan870102/jetbrains-darcula-emacs-theme")
   :custom
@@ -48,7 +58,7 @@ Add these lines to your 'init.el':
 
 You need `after-load-theme-hook`, if you don't already have it, define one like this:
 
-```
+```emacs-lisp
 (defvar after-load-theme-hook nil
   "Hook run after a color theme is loaded using `load-theme'.")
 
@@ -61,7 +71,7 @@ You need `after-load-theme-hook`, if you don't already have it, define one like 
 
 Then in your `use-package` declaration:
 
-```
+```emacs-lisp
 (use-package jetbrains-darcula-theme
   :straight (:host github :repo "ianpan870102/jetbrains-darcula-emacs-theme")
   :config
@@ -71,8 +81,7 @@ Then in your `use-package` declaration:
         (jetbrains-darcula-with-color-variables
          (custom-theme-set-faces
           'jetbrains-darcula
-          `(default ((t (:foreground ,fg1 :background ,bg0))))
-          ))))
+          `(default ((t (:foreground ,fg1 :background ,bg0))))))))
   (add-hook 'after-load-theme-hook 'customize-jetbrains-darcula)
   (load-theme 'jetbrains-darcula t))
 ```
