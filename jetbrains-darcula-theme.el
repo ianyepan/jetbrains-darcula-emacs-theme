@@ -38,6 +38,7 @@
       (bg2                "#303030")
       (bg3                "#313335") ; hl-line
       (bg4                "#383c3f")
+      (bg5                "#515757") ; tab-bar active tab
       (bg-hl              "#214283")
       (jb-r               "#ac0909")
       (jb-g               "#36a546")
@@ -412,6 +413,11 @@
    `(sml/read-only                            ((t (:foreground ,fg1 :weight normal))))
    `(sml/modes                                ((t (:foreground ,fg1 :weight normal))))
    `(sml/modified                             ((t (:foreground ,fg3 :weight normal))))
+
+   ;; tab-bar-mode
+   `(tab-bar                                  ((t (:background ,bg3))))
+   `(tab-bar-tab                              ((t (:foreground ,fg2 :background ,bg5 :box (:color ,bg4)))))
+   `(tab-bar-tab-inactive                     ((t (:foreground ,fg1 :background ,bg2 :box (:color ,bg4)))))
 
    `(evil-ex-substitute-matches               ((t (:foreground ,warning :weight normal :strike-through t))))
    `(evil-ex-substitute-replacement           ((t (:foreground ,jb-bluegreen :weight normal))))
