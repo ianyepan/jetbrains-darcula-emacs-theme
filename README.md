@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/ianpan870102/wilmersdorf-emacs-theme"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
+<a href="https://github.com/ianyepan/jetbrains-darcula-emacs-theme"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="GPL License"></a>
 </p>
 
@@ -49,7 +49,7 @@ Add these lines to your 'init.el':
 
 ```emacs-lisp
 (use-package jetbrains-darcula-theme
-  :straight (:host github :repo "ianpan870102/jetbrains-darcula-emacs-theme")
+  :straight (:host github :repo "ianyepan/jetbrains-darcula-emacs-theme")
   :custom
   (load-theme 'jetbrains-darcula t))
 ```
@@ -73,7 +73,7 @@ Then in your `use-package` declaration:
 
 ```emacs-lisp
 (use-package jetbrains-darcula-theme
-  :straight (:host github :repo "ianpan870102/jetbrains-darcula-emacs-theme")
+  :straight (:host github :repo "ianyepan/jetbrains-darcula-emacs-theme")
   :config
   (defun customize-jetbrains-darcula ()
     "Customize jetbrains darcula theme"
