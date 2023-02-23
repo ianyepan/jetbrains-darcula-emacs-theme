@@ -315,7 +315,7 @@
    `(helm-source-go-package-godoc-description ((,class (:foreground ,str))))
    `(helm-bookmark-w3m                        ((,class (:foreground ,type))))
 
-   `(web-mode-html-bracket-face               ((,class (:foreground ,jb-yellow))))
+   `(web-mode-html-tag-bracket-face           ((,class (:foreground ,jb-yellow))))
    `(web-mode-html-tag-face                   ((,class (:foreground ,jb-yellow))))
    `(web-mode-html-attr-name-face             ((,class (:foreground ,var))))
    `(web-mode-html-attr-value-face            ((,class (:foreground ,str))))
